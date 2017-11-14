@@ -18,5 +18,25 @@
 *.tar.gz
 *.rar
 
+# Netbeans
+.settings
+**/.nb-gradle-properties
+**/.nb-gradle/
+**/nbproject/
+
+# Eclipse
+.classpath
+.project
+.settings
+.springBeans
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Application configuration, including log/pass
+server/movies-mananger/src/main/resources/application.properties
