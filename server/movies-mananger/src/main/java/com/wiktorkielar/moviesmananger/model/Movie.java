@@ -2,6 +2,7 @@ package com.wiktorkielar.moviesmananger.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class Movie {
 
@@ -12,15 +13,14 @@ public class Movie {
 	private List<String> actors;
 	private LocalDateTime createdAt;
 
-	public Movie(String id, String title, double rating, String director, List<String> actors,
-			LocalDateTime createdAt) {
+	public Movie(String title, double rating, String director, List<String> actors) {
 		super();
-		this.id = id;
+		this.id = UUID.randomUUID().toString();
 		this.title = title;
 		this.rating = rating;
 		this.director = director;
 		this.actors = actors;
-		this.createdAt = createdAt;
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public String getId() {

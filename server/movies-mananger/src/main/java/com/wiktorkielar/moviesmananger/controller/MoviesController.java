@@ -1,8 +1,5 @@
 package com.wiktorkielar.moviesmananger.controller;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +17,22 @@ import com.wiktorkielar.moviesmananger.service.MoviesService;
 @RestController
 @RequestMapping("/movies")
 public class MoviesController {
-	
+
 	@Autowired
 	private MoviesService moviesService;
 
 	@GetMapping
-	public List<Movie> getMovies(SortDirection sortDirection) {
+	public List<Movie> getMovies(SortDirection sortDirection) throws Exception {
 		return moviesService.getMovies(sortDirection);
 	}
 
 	@PostMapping
-	public Movie createMovie(Movie movie) {
+	public Movie createMovie(Movie movie) throws Exception {
 		return moviesService.createMovie(movie);
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteMovie(@PathVariable String id) {
+	public void deleteMovie(@PathVariable String id) throws Exception {
 		moviesService.deleteMovie(id);
 	}
 
