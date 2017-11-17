@@ -9,10 +9,10 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.wiktorkielar.moviesmananger.model.Movie;
-import com.wiktorkielar.moviesmananger.model.SortDirection;
 import com.wiktorkielar.moviesmananger.repository.MoviesRepository;
 import com.wiktorkielar.moviesmananger.validator.IdValidator;
 import com.wiktorkielar.moviesmananger.validator.MovieValidator;
+import com.wiktorkielar.moviesmananger.validator.SortDirectionValidator;
 
 @Service
 public class MoviesService {
@@ -21,13 +21,18 @@ public class MoviesService {
 	private MoviesRepository moviesRepository;
 	
 	@Autowired
+	private SortDirectionValidator sortDirectionValidator;
+	
+	@Autowired
 	private MovieValidator movieValidator;
 
 	@Autowired
 	private IdValidator idValidator;
 
-	public List<Movie> getMovies(SortDirection sortDirection) throws Exception {
-		Direction direction = Direction.valueOf(sortDirection.name());
+	public List<Movie> getMovies(String sortDirection) throws Exception {
+		sortDirectionValidator.validateSortDirection(sortDirection);
+		
+		Direction direction = Direction.valueOf(sortDirection);
 		Sort sort = new Sort(direction, "rating");
 		
 		return moviesRepository.findAll(sort);

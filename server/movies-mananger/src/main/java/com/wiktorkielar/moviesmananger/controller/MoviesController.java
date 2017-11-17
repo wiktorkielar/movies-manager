@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wiktorkielar.moviesmananger.model.Movie;
-import com.wiktorkielar.moviesmananger.model.SortDirection;
 import com.wiktorkielar.moviesmananger.service.MoviesService;
 
 @RestController
@@ -24,13 +23,15 @@ public class MoviesController {
 	private MoviesService moviesService;
 
 	@GetMapping
-	public List<Movie> getMovies(SortDirection sortDirection) throws Exception {
-		return moviesService.getMovies(sortDirection);
+	public ResponseEntity<List<Movie>> getMovies(String sortDirection) throws Exception {
+		List<Movie> movieList = moviesService.getMovies(sortDirection);
+		return new ResponseEntity<List<Movie>>(movieList, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public Movie createMovie(Movie movie) throws Exception {
-		return moviesService.createMovie(movie);
+	public ResponseEntity<Movie> createMovie(Movie movie) throws Exception {
+		Movie createdMovie = moviesService.createMovie(movie);
+		return new ResponseEntity<Movie>(createdMovie, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
