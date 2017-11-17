@@ -8,13 +8,12 @@ public class Movie {
 
 	private String id;
 	private String title;
-	private double rating;
+	private Double rating;
 	private String director;
 	private List<String> actors;
 	private LocalDateTime createdAt;
 
-	public Movie(String title, double rating, String director, List<String> actors) {
-		super();
+	public Movie(String title, Double rating, String director, List<String> actors) {
 		this.id = UUID.randomUUID().toString();
 		this.title = title;
 		this.rating = rating;
@@ -31,7 +30,7 @@ public class Movie {
 		return title;
 	}
 
-	public double getRating() {
+	public Double getRating() {
 		return rating;
 	}
 

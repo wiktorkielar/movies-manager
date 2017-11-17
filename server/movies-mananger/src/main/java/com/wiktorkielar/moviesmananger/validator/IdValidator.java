@@ -8,13 +8,13 @@ import com.wiktorkielar.moviesmananger.exception.InvalidStringFormatException;
 public class IdValidator {
 
 	public void validateId(String id) {
-		checkFormat(id);	
+		validateUuidFormat(id);	
 	}
 	
-	private void checkFormat(String id) {
+	private void validateUuidFormat(String id) {
 		String regex = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f‌​]{4}-[0-9a-f]{12}$";
 		if(!id.matches(regex)) {
-			throw new InvalidStringFormatException("The id is not of a UUID format.");
+			throw new InvalidStringFormatException("The id is not of a valid UUID format.");
 		}
 	}
 

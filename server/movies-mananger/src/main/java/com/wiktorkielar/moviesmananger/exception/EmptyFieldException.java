@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class InvalidStringFormatException extends RuntimeException {
+public class EmptyFieldException extends RuntimeException {
 	
-	private static final long serialVersionUID = 5763306784715948303L;
+	private static final long serialVersionUID = 8921305615095403636L;
 
-	public InvalidStringFormatException (String message) {
+	public EmptyFieldException(String message) {
 		super(message);
 	}
 
