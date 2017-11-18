@@ -1,0 +1,74 @@
+<!-- HEADER -->
+<header id="main-header" class="py-2 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card dashboard-card py-2">
+                    <div class="card-block">
+                        <h2 class="card-title">
+                            Best Movies
+                        </h2>
+                        <div class="dashboard-icon text-success">
+                            <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-text">
+                            Movies List Starting With Highest-Rated.
+                        </div>
+                        <div>
+                            <button routerLink="/best" type="button" class="btn btn-outline-success mt-3">See Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card dashboard-card py-2">
+                    <div class="card-block">
+                        <h2 class="card-title">
+                            Worst Movies
+                        </h2>
+                        <div class="dashboard-icon text-danger">
+                            <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-text">
+                            Movies List Starting With Lowest-Rated.
+                        </div>
+                        <div>
+                            <button routerLink="/worst" type="button" class="btn btn-outline-danger mt-3">See Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card dashboard-card py-2">
+                    <div class="card-block">
+                        <h2 class="card-title">
+                            Add Movie
+                        </h2>
+                        <div class="dashboard-icon text-info">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                        <div class="card-text">
+                            Add a New Movie To The List!
+                        </div>
+                        <div>
+                            <button routerLink="/add" type="button" class="btn btn-outline-info mt-3">Add Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
