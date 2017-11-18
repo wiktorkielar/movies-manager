@@ -1,0 +1,33 @@
+<!-- NAVIGATION -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark p-1">
+    <div class="container">
+        <a routerLink="/dashboard" class="navbar-brand px-2">
+            <i class="fa fa-film" aria-hidden="true"></i> MoviesManager
+        </a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse smaller-menu" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a routerLink="/dashboard" class="nav-link">
+                        <i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a routerLink="/best" class="nav-link">
+                        <i class="fa fa-sort-amount-desc" aria-hidden="true"></i> Best Movies
+                    </a>
+                </li>
+                <li class="nav-item px-2">
+                    <a routerLink="/worst" class=" nav-link ">
+                        <i class="fa fa-sort-amount-asc " aria-hidden="true "></i>Worst Movies</a>
+                </li>
+                <li class="nav-item px-2 ">
+                    <a routerLink="/add" class="nav-link ">
+                        <i class="fa fa-plus " aria-hidden="true "></i> Add Movie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,62 @@
+<!-- HEADER -->
+<header id="main-header " class="py-2 bg-info text-white ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-md-6 ">
+                <h1>
+                    <i class="fa fa-plus " aria-hidden="true "></i> Add Movie
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- FORM ADD -->
+<section id="addForm " class="py-5 ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col"></div>
+            <div class="col">
+                <form #addForm="ngForm">
+                    <div class="form-group">
+                        <label for="movieTitleId">Title</label>
+                        <input type="text" class="form-control" id="movieTitleId" name="movieTitleName" placeholder="Title" [(ngModel)]="movie.title" #titleValidation="ngModel" required pattern="^[a-zA-Z]+$" minlength="3" maxlength="50">
+                        <div *ngIf="!titleValidation.valid && titleValidation.touched" class="alert alert-danger mt-2">
+                            <span *ngIf="titleValidation.errors.required">{{emptyAlert}}<br></span>
+                            <span *ngIf="titleValidation.errors.pattern">{{lettersWithoutWhitespaceAlert}}<br></span>
+                            <span *ngIf="titleValidation.errors.minlength">{{minLengthAlert}}<br></span>
+                            <span *ngIf="titleValidation.errors.maxlength"> {{maxLengthAlert}}<br></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="movieRatingId">Rating</label>
+                        <input type="number" class="form-control" id="movieRatingId" name="movieRatingName" [(ngModel)]="movie.rating" #ratingValidation="ngModel" required min="1" max="10" step="0.01">
+                        <div *ngIf="!ratingValidation.valid && ratingValidation.touched" class="alert alert-danger mt-2">
+                            <span *ngIf="ratingValidation.errors.required">{{emptyAlert}}<br></span>
+                            <span *ngIf="ratingValidation.errors.min">{{minAlert}}<br></span>
+                            <span *ngIf="ratingValidation.errors.max">{{maxAlert}}<br></span>
+                        </div>
+                    </div>
+                    <div class=" form-group ">
+                        <label for="movieDirectorId ">Director</label>
+                        <input type="text " class="form-control " id="movieDirectorId" name="movieDirectorName" placeholder="Director " [(ngModel)]="movie.director" #directorValidation="ngModel" required pattern="^[a-zA-Z\s]*[a-zA-Z]+[a-zA-Z\s]*$">
+                        <div *ngIf="!directorValidation.valid && directorValidation.touched" class="alert alert-danger mt-2">
+                            <span *ngIf="directorValidation.errors.required">{{emptyAlert}}<br></span>
+                            <span *ngIf="directorValidation.errors.pattern">{{lettersWithWhitespaceAlert}}<br></span>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="movieActorsId ">Actors</label>
+                        <textarea class="form-control " id="movieActorsId" name="movieActorsName" cols="30 " rows="10 " placeholder="Actors, one per line" [(ngModel)]="movie.actors" #actorsValidation="ngModel" required></textarea>
+                    </div>
+                    <div *ngIf="!actorsValidation.valid && actorsValidation.touched" class="alert alert-danger mt-2">
+                        <span *ngIf="actorsValidation.errors.required">{{emptyAlert}}<br></span>
+                        <span *ngIf="actorsValidation.errors.pattern">{{lettersWithWhitespaceAlert}}<br></span>
+                    </div>
+                    <button type="submit " class="btn btn-info btn-block " [disabled]="!addForm.valid" (click)="send(movie)">Add Movie</button>
+                </form>
+            </div>
+            <div class="col "></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+/* NAV SETTINGS */
+
+.smaller-menu {
+    font-size: 0.9em;
+}
+
+
+/* HEADER SETTINGS */
+
+.header-color {
+    background-color: #A9A9A9
+}
+
+
+/* DASHBOARD SETTINGS */
+
+.dashboard-card {
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 2px #e3e3e3;
+}
+
+.dashboard-icon {
+    font-size: 80px;
+}
+
+
+/* BEST TABLE SETTINGS */
+
+.best-table,
+.worst-table {
+    font-size: 0.8em;
+}
