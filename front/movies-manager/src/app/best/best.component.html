@@ -11,6 +11,38 @@
     </div>
 </header>
 
+<!-- OPTIONAL SUCCESS MESSAGE -->
+<section *ngIf="showSuccessMessage" id="success" class="pt-5 ">
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="alert alert-success alert-dismissible fade show  mx-auto" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                            </button>
+                    <strong>Success!</strong><br>Movie Deleted Successfully!
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</section>
+
+<!-- OPTIONAL ERROR MESSAGE -->
+<section *ngIf="errorMessage != ''" id="error" class="pt-5 ">
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible fade show  mx-auto" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Oh snap!</strong> Something went wrong:<br> {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- TABLE BEST -->
 <section id="tablebest " class="py-5 ">
     <div class="container ">
@@ -28,35 +60,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>a860fdcc-1d27-4417-b473-97f77e933f26</td>
-                        <td>MyAwesomeMovie</td>
-                        <td>3.88</td>
-                        <td>Ken Block</td>
-                        <td>John Snow, Christina Jake</td>
-                        <td>2016006-07T09:53:42.523</td>
-                        <td><button type="button " class="btn btn-danger btn-sm ">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>a860fdcc-1d27-4417-b473-97f77e933f26</td>
-                        <td>MyAwesomeMovie</td>
-                        <td>3.88</td>
-                        <td>Ken Block</td>
-                        <td>John Snow, Christina Jake</td>
-                        <td>2016006-07T09:53:42.523</td>
-                        <td><button type="button " class="btn btn-danger btn-sm ">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>a860fdcc-1d27-4417-b473-97f77e933f26</td>
-                        <td>MyAwesomeMovie</td>
-                        <td>3.88</td>
-                        <td>Ken Block</td>
-                        <td>John Snow, Christina Jake</td>
-                        <td>2016006-07T09:53:42.523</td>
-                        <td><button type="button " class="btn btn-danger btn-sm ">Delete</button></td>
+                    <tr *ngFor="let movie of moviesList">
+                        <td nowrap>{{movie.id}}</td>
+                        <td>{{movie.title}}</td>
+                        <td>{{movie.rating}}</td>
+                        <td>{{movie.director}}</td>
+                        <td><span *ngFor="let actor of movie.actors">{{actor}}<br></span></td>
+                        <td [innerHTML]="parseDate(movie.createdAt)"></td>
+                        <td><button type="button " class="btn btn-danger btn-sm" data-toggle="modal" data-target="#confirmationModal" (click)="copyIdAndHideSuccessAlert(movie.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+<!-- MODAL BEST -->
+<div id="confirmationModal" class="modal fade">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Movie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>Are You Sure You Want To Delete This Movie?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modal-close-button">Close</button>
+                <button type="button" class="btn btn-danger" (click)="deleteMovie()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

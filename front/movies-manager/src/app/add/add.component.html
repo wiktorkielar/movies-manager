@@ -11,6 +11,38 @@
     </div>
 </header>
 
+<!-- OPTIONAL SUCCESS MESSAGE -->
+<section *ngIf="showSuccessMessage" id="success" class="pt-5 ">
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="alert alert-success alert-dismissible fade show  mx-auto" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="hideSuccessAlert()">
+                                            <span aria-hidden="true">&times;</span>
+                            </button>
+                    <strong>Success!</strong><br>Movie Added Successfully!
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</section>
+
+<!-- OPTIONAL ERROR MESSAGE -->
+<section *ngIf="errorMessage != ''" id="error" class="pt-5 ">
+    <div class="container">
+        <div class="row">
+            <div class="alert alert-danger alert-dismissible fade show  mx-auto" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>Oh snap!</strong> Something went wrong:<br> {{errorMessage}}
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FORM ADD -->
 <section id="addForm " class="py-5 ">
     <div class="container ">
@@ -53,7 +85,7 @@
                         <span *ngIf="actorsValidation.errors.required">{{emptyAlert}}<br></span>
                         <span *ngIf="actorsValidation.errors.pattern">{{lettersWithWhitespaceAlert}}<br></span>
                     </div>
-                    <button type="submit " class="btn btn-info btn-block " [disabled]="!addForm.valid" (click)="send(movie)">Add Movie</button>
+                    <button type="submit " class="btn btn-info btn-block " [disabled]="!addForm.valid" (click)="createMovie(movie)">Add Movie</button>
                 </form>
             </div>
             <div class="col "></div>

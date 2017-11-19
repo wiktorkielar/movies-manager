@@ -1,8 +1,10 @@
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { HTTPService } from './../service/http.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { routing } from './app.routes';
-
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -23,9 +25,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     FormsModule,
-    routing
+    routing,
+    HttpClientModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [HTTPService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
