@@ -1,5 +1,24 @@
 package com.wiktorkielar.moviesmananger.model;
 
+import static com.wiktorkielar.moviesmananger.util.Constants.ACTOR;
+import static com.wiktorkielar.moviesmananger.util.Constants.CANNOT_BE_EMPTY;
+import static com.wiktorkielar.moviesmananger.util.Constants.CANNOT_BE_MISSING;
+import static com.wiktorkielar.moviesmananger.util.Constants.CANNOT_CONTAIN_WHITESPACE;
+import static com.wiktorkielar.moviesmananger.util.Constants.CAN_CONTAIN_BOTH;
+import static com.wiktorkielar.moviesmananger.util.Constants.CHARACTERS;
+import static com.wiktorkielar.moviesmananger.util.Constants.DIRECTOR;
+import static com.wiktorkielar.moviesmananger.util.Constants.DOT;
+import static com.wiktorkielar.moviesmananger.util.Constants.ID;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_BE_UUID;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_CONTAIN_MAX;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_CONTAIN_MIN;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_CONTAIN_ONLY_LETTERS;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_VALUE_MAX;
+import static com.wiktorkielar.moviesmananger.util.Constants.MUST_VALUE_MIN;
+import static com.wiktorkielar.moviesmananger.util.Constants.RATING;
+import static com.wiktorkielar.moviesmananger.util.Constants.SPACE;
+import static com.wiktorkielar.moviesmananger.util.Constants.TITLE;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -10,26 +29,48 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel
 public class Movie {
 	
-	
-	
-
 	@ApiModelProperty(
-			hidden = true)
+			hidden=true, 
+			notes =  
+			ID + SPACE + MUST_BE_UUID + DOT)
 	private String id;
-//	@ApiModelProperty(
-//			required=true, 
-//			notes =  
-//			TITLE + SPACE + CANNOT_BE_EMPTY + SPACE +
-//			TITLE + SPACE + CANNOT_BE_MISSING + SPACE + 
-//			TITLE + MUST_CONTAIN_MIN + SPACE + "3"
-// 			cannot be empty. and has to contain at least 3 characters but no more than 50 characters")
+	
+	@ApiModelProperty(
+			required=true, 
+			notes =  
+			TITLE + SPACE + CANNOT_BE_MISSING + DOT + SPACE +
+			TITLE + SPACE + CANNOT_BE_EMPTY + DOT + SPACE + 
+			TITLE + SPACE + MUST_CONTAIN_MIN + SPACE + "3" + SPACE + CHARACTERS + DOT + SPACE +
+			TITLE + SPACE + MUST_CONTAIN_MAX + SPACE + "50" + SPACE + CHARACTERS + DOT + SPACE +
+			TITLE + SPACE +  MUST_CONTAIN_ONLY_LETTERS + DOT)
 	private String title;
-	@ApiModelProperty(required=true)
+	
+	@ApiModelProperty(
+			required=true, 
+			notes =  
+			RATING + SPACE + CANNOT_BE_MISSING + DOT + SPACE +
+			RATING + SPACE + MUST_VALUE_MIN + SPACE + "1" + DOT + SPACE +
+			RATING + SPACE + MUST_VALUE_MAX + SPACE + "10" + DOT)
 	private Double rating;
-	@ApiModelProperty(required=true)
+	
+	@ApiModelProperty(
+			required=true, 
+			notes =  
+			DIRECTOR + SPACE + CANNOT_BE_MISSING + DOT + SPACE +
+			DIRECTOR + SPACE + CANNOT_BE_EMPTY + DOT + SPACE + 
+			DIRECTOR + SPACE + CAN_CONTAIN_BOTH + DOT + SPACE +
+			DIRECTOR + SPACE + CANNOT_CONTAIN_WHITESPACE + DOT + SPACE)
 	private String director;
-	@ApiModelProperty(required=true)
+	
+	@ApiModelProperty(
+			required=true, 
+			notes =  
+			ACTOR + SPACE + CANNOT_BE_MISSING + DOT + SPACE +
+			ACTOR + SPACE + CANNOT_BE_EMPTY + DOT + SPACE + 
+			ACTOR + SPACE + CAN_CONTAIN_BOTH + DOT + SPACE +
+			ACTOR + SPACE + CANNOT_CONTAIN_WHITESPACE + DOT + SPACE)
 	private List<String> actors;
+	
 	@ApiModelProperty(hidden = true)
 	private LocalDateTime createdAt;
 
@@ -65,5 +106,62 @@ public class Movie {
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((actors == null) ? 0 : actors.hashCode());
+		result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
+		result = prime * result + ((director == null) ? 0 : director.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Movie other = (Movie) obj;
+		if (actors == null) {
+			if (other.actors != null)
+				return false;
+		} else if (!actors.equals(other.actors))
+			return false;
+		if (createdAt == null) {
+			if (other.createdAt != null)
+				return false;
+		} else if (!createdAt.equals(other.createdAt))
+			return false;
+		if (director == null) {
+			if (other.director != null)
+				return false;
+		} else if (!director.equals(other.director))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (rating == null) {
+			if (other.rating != null)
+				return false;
+		} else if (!rating.equals(other.rating))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+	
+	
 
 }

@@ -1,4 +1,4 @@
-package com.wiktorkielar.moviesmananger.validator;
+package com.wiktorkielar.moviesmananger.util;
 
 import com.wiktorkielar.moviesmananger.exception.EmptyFieldException;
 import com.wiktorkielar.moviesmananger.exception.InvalidSortDirectionException;
@@ -10,7 +10,9 @@ import com.wiktorkielar.moviesmananger.exception.MissingFieldException;
 import com.wiktorkielar.moviesmananger.exception.StringContentException;
 import com.wiktorkielar.moviesmananger.model.SortDirection;
 
-public class Utils {
+public class Preconditions {
+	
+	private Preconditions() {}
 
 	public static void validateMissingField(String fieldName, Object value) {
 		if (value == null) {

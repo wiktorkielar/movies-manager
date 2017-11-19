@@ -1,9 +1,5 @@
 package com.wiktorkielar.moviesmananger.config;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,9 +26,6 @@ public class SwaggerConfig {
 	        DEFAULT_CONTACT, 
 	        "Apache 2.0", 
 	        "http://www.apache.org/licenses/LICENSE-2.0");
-	
-	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(
-			Arrays.asList("application/json", "application/xml"));
 
 	@Bean
 	public Docket api() {

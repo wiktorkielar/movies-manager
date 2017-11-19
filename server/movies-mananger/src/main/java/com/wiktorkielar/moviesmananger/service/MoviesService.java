@@ -1,7 +1,6 @@
 package com.wiktorkielar.moviesmananger.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -29,7 +28,7 @@ public class MoviesService {
 	@Autowired
 	private IdValidator idValidator;
 
-	public List<Movie> getMovies(String sortDirection) throws Exception {
+	public List<Movie> get(String sortDirection) throws Exception {
 		sortDirectionValidator.validateSortDirection(sortDirection);
 		
 		Direction direction = Direction.valueOf(sortDirection);
@@ -38,17 +37,16 @@ public class MoviesService {
 		return moviesRepository.findAll(sort);
 	}
 
-	public Movie createMovie(Movie movie) throws Exception {
+	public Movie create(Movie movie) throws Exception {
 		movieValidator.validateMovie(movie);
 		
 		return moviesRepository.insert(movie);
 	}
 
-	public boolean deleteMovie(String id) throws Exception {
+	public boolean delete(String id) throws Exception {
 		idValidator.validateId(id);
 		
-		Optional<Movie> optional = moviesRepository.findById(id);
-		if(optional.isPresent()) {
+		if(moviesRepository.findById(id).isPresent()){
 			moviesRepository.deleteById(id);
 			return true;
 		}

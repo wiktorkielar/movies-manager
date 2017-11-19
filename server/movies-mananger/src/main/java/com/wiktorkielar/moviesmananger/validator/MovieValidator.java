@@ -6,9 +6,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.wiktorkielar.moviesmananger.model.Movie;
+import com.wiktorkielar.moviesmananger.util.Preconditions;
 
 @Component
 public class MovieValidator {
+	
+	public static final String TITLE = "title"; 
+	public static final String RATING = "rating";
+	public static final String DIRECTOR = "director";
+	public static final String ACTORS = "actors";
 
 	@Value("${movie_title_length_min}")
 	public int movieTitleLenghtMin;
@@ -37,31 +43,31 @@ public class MovieValidator {
 	}
 
 	private void validateMovieTitle(String title) {
-		Utils.validateMissingField("title", title);
-		Utils.validateEmptyField("title", title);
-		Utils.validateMinFieldLength("title", title, movieTitleLenghtMin);
-		Utils.validateMaxFieldLength("title", title, movieTitleLenghtMax);
-		Utils.validateStringContent("title", title, movieTitleRegex);
+		Preconditions.validateMissingField(TITLE, title);
+		Preconditions.validateEmptyField(TITLE, title);
+		Preconditions.validateMinFieldLength(TITLE, title, movieTitleLenghtMin);
+		Preconditions.validateMaxFieldLength(TITLE, title, movieTitleLenghtMax);
+		Preconditions.validateStringContent(TITLE, title, movieTitleRegex);
 	}
 
 	private void validateMovieRating(Double rating) {
-		Utils.validateMissingField("rating", rating);
-		Utils.validateMinFieldValue("rating", rating, movieRatingMin);
-		Utils.validateMaxFieldValue("rating", rating, movieRatingMax);
+		Preconditions.validateMissingField(RATING, rating);
+		Preconditions.validateMinFieldValue(RATING, rating, movieRatingMin);
+		Preconditions.validateMaxFieldValue(RATING, rating, movieRatingMax);
 	}
 
 	private void validateMovieDirector(String director) {
-		Utils.validateMissingField("director", director);
-		Utils.validateEmptyField("director", director);
-		Utils.validateStringContent("director", director, movieDirectorRegex);
+		Preconditions.validateMissingField(DIRECTOR, director);
+		Preconditions.validateEmptyField(DIRECTOR, director);
+		Preconditions.validateStringContent(DIRECTOR, director, movieDirectorRegex);
 	}
 
 	private void validateMovieActors(List<String> actors) {
-		Utils.validateMissingField("actors", actors);
+		Preconditions.validateMissingField(ACTORS, actors);
 		
 		for (int i=0; i<actors.size(); i++) {
-			Utils.validateEmptyField("actors[" + i + "]", actors.get(i));
-			Utils.validateStringContent("actors[" + i + "]", actors.get(i), movieDirectorRegex);
+			Preconditions.validateEmptyField(ACTORS + "[" + i + "]", actors.get(i));
+			Preconditions.validateStringContent(ACTORS + "[" + i + "]", actors.get(i), movieActorsRegex);
 		}
 	}
 

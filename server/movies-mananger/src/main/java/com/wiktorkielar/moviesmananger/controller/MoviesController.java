@@ -26,19 +26,19 @@ public class MoviesController {
 
 	@GetMapping
 	public ResponseEntity<List<Movie>> getMovies(String sortDirection) throws Exception {
-		List<Movie> movieList = moviesService.getMovies(sortDirection);
-		return new ResponseEntity<List<Movie>>(movieList, HttpStatus.OK);
+		List<Movie> movieList = moviesService.get(sortDirection);
+		return new ResponseEntity<>(movieList, HttpStatus.OK);
 	}
 
 	@PostMapping
 	public ResponseEntity<Movie> createMovie(Movie movie) throws Exception {
-		Movie createdMovie = moviesService.createMovie(movie);
-		return new ResponseEntity<Movie>(createdMovie, HttpStatus.CREATED);
+		Movie createdMovie = moviesService.create(movie);
+		return new ResponseEntity<>(createdMovie, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteMovie(@PathVariable String id) throws Exception {
-		if(moviesService.deleteMovie(id)) {
+		if(moviesService.delete(id)) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity(HttpStatus.NOT_FOUND);
