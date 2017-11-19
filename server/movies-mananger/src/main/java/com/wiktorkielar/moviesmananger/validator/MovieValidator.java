@@ -1,6 +1,7 @@
 package com.wiktorkielar.moviesmananger.validator;
 
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -65,10 +66,10 @@ public class MovieValidator {
 	private void validateMovieActors(List<String> actors) {
 		Preconditions.validateMissingField(ACTORS, actors);
 		
-		for (int i=0; i<actors.size(); i++) {
-			Preconditions.validateEmptyField(ACTORS + "[" + i + "]", actors.get(i));
-			Preconditions.validateStringContent(ACTORS + "[" + i + "]", actors.get(i), movieActorsRegex);
-		}
+		IntStream.range(0, actors.size()).forEach(value -> {
+			Preconditions.validateEmptyField(ACTORS + "[" + value + "]", actors.get(value));
+			Preconditions.validateStringContent(ACTORS + "[" + value + "]", actors.get(value), movieActorsRegex);
+		});
 	}
 
 	
