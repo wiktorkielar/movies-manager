@@ -260,10 +260,10 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
     **Content:** 
     ```
     {
-        "timestamp": "2017-11-20T05:03:26.986+0000",
+        "timestamp": "2017-11-20T05:11:45.852+0000",
         "status": 400,
         "error": "Bad Request",
-        "message": "Missing mandatory 'title' field.",
+        "message": "Missing mandatory 'rating' field.",
         "path": "/api/movies"
     }
     ```
@@ -274,14 +274,116 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
     **Content:**
     ```
     {
-        "timestamp": "2017-11-20T05:04:22.477+0000",
+        "timestamp": "2017-11-20T05:24:12.795+0000",
         "status": 400,
         "error": "Bad Request",
-        "message": "Empty 'title' field.",
+        "message": "'rating' field's value (0.0) is lower than minimum expected (1.0).",
+        "path": "/api/movies"
+    }
+    ```
+
+    OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T05:24:50.784+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "'rating' field's value (20.0) is higher than maximum expected (10.0).",
         "path": "/api/movies"
     }
     ```
     
+ * **Error Response, 'director' field related:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```
+    {
+        "timestamp": "2017-11-20T05:26:51.086+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Missing mandatory 'director' field.",
+        "path": "/api/movies"
+    }
+    ```
+
+    OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T05:27:19.689+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Empty 'director' field.",
+        "path": "/api/movies"
+    }
+    ```
+
+    OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T05:28:07.423+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "'director' field's content does not match regex pattern ([a-zA-Z ]+).",
+        "path": "/api/movies"
+    }
+    ```
     
-    curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/api/movies?sortDirection=ASC'
+* **Error Response, 'actors' field related:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```
+    {
+        "timestamp": "2017-11-20T05:29:37.078+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Missing mandatory 'actors' field.",
+        "path": "/api/movies"
+    }
+    ```
+
+    OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T05:30:25.784+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Empty 'actors[0]' field.",
+        "path": "/api/movies"
+    }
+    ```
+
+    OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T05:30:55.381+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "'actors[0]' field's content does not match regex pattern ([a-zA-Z ]+).",
+        "path": "/api/movies"
+    }
+    ```
+ 
+ * **Sample Call:**
+
+  ```
+    curl --data 'title=ThorRagnarok&rating=8.1&director=Taika%20Waititi&actors=Chris%20Hemsworth&actors=Cate%20Blanchet' http://localhost:8080/api/movies
+  ```
+
 
