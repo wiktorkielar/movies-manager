@@ -101,5 +101,5 @@ Returns the list of Movie object based on the sorting direction defined by the u
 * **Sample Call:**
 
   ```
- curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/api/movies?sortDirection=ASC'
+    curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/api/movies?sortDirection=ASC'
   ```
