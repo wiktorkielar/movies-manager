@@ -21,7 +21,7 @@ Returns the list of Movie object based on the sorting direction defined by the u
 
   /api/movies
   
-  * **Method:**
+* **Method:**
 
   `GET`
   
@@ -51,7 +51,7 @@ Returns the list of Movie object based on the sorting direction defined by the u
                   "Chris Hemsworth",  
                   "Cate Blanchet"  
               ],  
-              "createdAt": "2017-11-19T12:54:57.443"  
+              "mdAt": "2017-11-19T12:54:57.443"  
         }  
     ]  
     ```
@@ -111,13 +111,13 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
 
   /api/movies
   
-  * **Method:**
+* **Method:**
 
   `POST`
   
 *  **URL Params**
 
-  None
+   None
 
 * **Data Params**
 
