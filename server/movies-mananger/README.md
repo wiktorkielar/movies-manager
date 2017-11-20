@@ -70,7 +70,7 @@ Returns the list of Movie object based on the sorting direction defined by the u
     }
     ```
 
-  OR
+    OR
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:**
@@ -83,8 +83,8 @@ Returns the list of Movie object based on the sorting direction defined by the u
         "path": "/api/movies"
     }
     ```
-    
-     OR
+
+    OR
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:**
@@ -97,3 +97,9 @@ Returns the list of Movie object based on the sorting direction defined by the u
         "path": "/api/movies"
     }
     ```
+
+* **Sample Call:**
+
+  ```
+ curl -X GET --header 'Content-Type: application/json' --header 'Accept: application/json' 'http://localhost:8080/api/movies?sortDirection=ASC'
+  ```
