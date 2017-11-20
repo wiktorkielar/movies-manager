@@ -12,3 +12,88 @@ The Movie class is annotated, to help Swagger correctly generate documentation. 
 * **repository** - contains repository class required by MongoDb Spring implementation,
 * **services** - contains the interface and it's implemenation defining logic used by the controller class
 * **validator** - defines the the validation methods that correspond to MoviesController methods
+
+## REST API Endpoints
+
+### Get Movies
+Returns the list of Movie object based on the sorting direction defined by the user (ascending or descending).
+* **URL**
+
+  /api/movies
+  
+  * **Method:**
+
+  `GET`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `sortDirection=[sortDirection]` , where valid values are `ASC` or `DESC`
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:**  
+    
+    ```
+    [  
+          {  
+              "id": "323c4551-c510-4c48-9822-423855a785a8",    
+              "title": "ThorRagnarok",  
+              "rating": 8.1,  
+              "director": "Taika Waititi",  
+              "actors": [  
+                  "Chris Hemsworth",  
+                  "Cate Blanchet"  
+              ],  
+              "createdAt": "2017-11-19T12:54:57.443"  
+        }  
+    ]  
+    ```
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```
+    {
+        "timestamp": "2017-11-20T04:18:20.827+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Missing mandatory 'sortDirection' field.",
+        "path": "/api/movies"
+    }
+    ```
+
+  OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T04:20:57.230+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "Empty 'sortDirection' field.",
+        "path": "/api/movies"
+    }
+    ```
+    
+     OR
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:**
+    ```
+    {
+        "timestamp": "2017-11-20T04:23:55.281+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "'sortDirection' field's value is not in a valid values set (ASC, DESC).",
+        "path": "/api/movies"
+    }
+    ```
