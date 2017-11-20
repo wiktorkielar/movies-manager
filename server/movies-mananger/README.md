@@ -29,7 +29,9 @@ Returns the list of Movie object based on the sorting direction defined by the u
 
    **Required:**
  
-   `sortDirection=[string]` , where valid values are `ASC` or `DESC`
+   `sortDirection=[string]` , where:
+   
+   * sortDirection valid values are `ASC` or `DESC`.   
 
 * **Data Params**
 
@@ -125,31 +127,31 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
  
    `title=[string]` , where:
    
-   * Title cannot be missing.   
-   * Title cannot be empty.  
-   * Title must contain at least 3 characters.  
-   * Title must contain no more than 50 characters.  
-   * Title must contain only letters.  
+   * title cannot be missing.   
+   * title cannot be empty.  
+   * title must contain at least 3 characters.  
+   * title must contain no more than 50 characters.  
+   * title must contain only letters.  
    
    `rating=[number]` , where:
    
-   * Rating cannot be missing.   
-   * Rating must have minimum value of 1.  
-   * Rating must have maximum value of 10.    
+   * rating cannot be missing.   
+   * rating must have minimum value of 1.  
+   * rating must have maximum value of 10.    
    
     `director=[string]` , where:
    
-   * Director cannot be missing.    
-   * Director cannot be empty.  
-   * Director can contain both letters and whitespaces.    
-   * Director cannot contain whitespaces alone.  
+   * director cannot be missing.    
+   * director cannot be empty.  
+   * director can contain both letters and whitespaces.    
+   * director cannot contain whitespaces alone.  
    
    `actors=[Array[string]]` , where:
    
-   * Actor cannot be missing.    
-   * Actor cannot be empty.  
-   * Actor can contain both letters and whitespaces.    
-   * Actor cannot contain whitespaces alone.  
+   * actor cannot be missing.    
+   * actor cannot be empty.  
+   * actor can contain both letters and whitespaces.    
+   * actor cannot contain whitespaces alone.  
 
 * **Success Response:**
 
@@ -372,4 +374,60 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
     curl --data 'title=ThorRagnarok&rating=8.1&director=Taika%20Waititi&actors=Chris%20Hemsworth&actors=Cate%20Blanchet' http://localhost:8080/api/movies
   ```
 
+### Delete Movie
+Returns the HTTP status confirming that the entry was deleted or not found.
+* **URL**
+
+  /api/movies/{id}
+  
+* **Method:**
+
+  `DELETE`
+  
+*  **URL Params**
+
+   **Required:**
+ 
+   `id=[string]` , where:
+   
+   * id cannot be missing.    
+   * id cannot be empty.  
+   * id must be in valid UUID format (xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx).    
+
+* **Data Params**
+
+  None
+
+* **Success Response:**
+
+  * **Code:** 204 NO CONTENT <br />
+    **Content:**  
+    None
+ 
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** 
+    ```
+    {
+        "timestamp": "2017-11-20T06:13:45.631+0000",
+        "status": 400,
+        "error": "Bad Request",
+        "message": "The 'id' field is not of a valid UUID format.",
+        "path": "/api/movies/a"
+    }
+    ```
+
+    OR
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:**  
+    None
+
+
+* **Sample Call:**
+
+  ```
+    curl -X DELETE --header 'Accept: */*' 'http://localhost:8080/api/movies/64c19094-9046-46ea-a558-8cc8a18c851e'
+  ```
 
