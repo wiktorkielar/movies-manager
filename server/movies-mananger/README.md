@@ -218,27 +218,13 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
     **Content:**
     ```
     {
-        "timestamp": "2017-11-20T05:05:01.198+0000",
-        "status": 400,
-        "error": "Bad Request",
-        "message": "'title' field's length (2) is lower than minimum expected (3).",
-        "path": "/api/movies"
-    }
-    ```
-    
-    OR
-
-  * **Code:** 400 BAD REQUEST <br />
-    **Content:**
-    ```
-    {
         "timestamp": "2017-11-20T05:06:05.460+0000",
         "status": 400,
         "error": "Bad Request",
         "message": "'title' field's length (65) is higher than maximum expected (50).",
         "path": "/api/movies"
     }
-   ```
+    ```
     
     OR
 
@@ -252,7 +238,7 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
         "message": "'title' field's content does not match regex pattern ([a-zA-Z]+).",
         "path": "/api/movies"
     }
-    ```
+   ```
     
 * **Error Response, 'rating' field related:**
 
@@ -296,7 +282,7 @@ Returns a newly created Movie object, with automatically generated timestamp (cr
     }
     ```
     
- * **Error Response, 'director' field related:**
+* **Error Response, 'director' field related:**
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:** 
