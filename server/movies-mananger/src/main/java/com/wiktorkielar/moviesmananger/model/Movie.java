@@ -23,10 +23,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import com.wiktorkielar.moviesmananger.exception.MissingFieldException;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel
+@JsonDeserialize(builder = Movie.MovieBuilder.class)
 public class Movie {
 	
 	@ApiModelProperty(
@@ -74,13 +79,13 @@ public class Movie {
 	@ApiModelProperty(hidden = true)
 	private LocalDateTime createdAt;
 
-	public Movie(String title, Double rating, String director, List<String> actors) {
-		this.id = UUID.randomUUID().toString();
-		this.title = title;
-		this.rating = rating;
-		this.director = director;
-		this.actors = actors;
-		this.createdAt = LocalDateTime.now();
+	public Movie(MovieBuilder builder) {
+		this.id = builder.id;
+		this.title = builder.title;
+		this.rating = builder.rating;
+		this.director = builder.director;
+		this.actors = builder.actors;
+		this.createdAt = builder.createdAt;
 	}
 
 	public String getId() {
@@ -160,6 +165,62 @@ public class Movie {
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+	
+	@JsonPOJOBuilder(buildMethodName = "create", withPrefix = "set")
+	public static class MovieBuilder {
+		
+		private String id;
+		private String title;
+		private Double rating;
+		private String director;
+		private List<String> actors;
+		private LocalDateTime createdAt;
+		
+		public MovieBuilder title(String title) {
+			this.title = title;
+			return this;
+		}
+		public MovieBuilder rating(Double rating) {
+			this.rating = rating;
+			return this;
+		}
+		public MovieBuilder director(String director) {
+			this.director = director;
+			return this;
+		}
+		public MovieBuilder actors(List<String> actors) {
+			this.actors = actors;
+			return this;
+		}
+		
+		public Movie build() {
+			
+			if(title == null){
+				throwMissingFieldExceptionWithFieldName("title");
+			}
+			if(rating == null){
+				throwMissingFieldExceptionWithFieldName("rating");
+			}
+			if(director == null){
+				throwMissingFieldExceptionWithFieldName("director");
+			}
+			if(actors == null) {
+				throwMissingFieldExceptionWithFieldName("actors");
+			}
+			this.id = UUID.randomUUID().toString();
+			this.createdAt = LocalDateTime.now();
+			
+			return new Movie(this);
+
+		}
+		
+		private void throwMissingFieldExceptionWithFieldName(String fieldName) {
+			String message = String.format("Missing mandatory %s field.", fieldName);
+			throw new MissingFieldException(message);
+		}
+		
+
 	}
 	
 	

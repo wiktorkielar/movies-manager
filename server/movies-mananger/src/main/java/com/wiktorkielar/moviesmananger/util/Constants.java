@@ -2,6 +2,8 @@ package com.wiktorkielar.moviesmananger.util;
 
 public final class Constants {
 	
+	private Constants() { }
+	
 	public static final String ID = "Id";
 	public static final String TITLE = "Title";
 	public static final String RATING = "Rating";

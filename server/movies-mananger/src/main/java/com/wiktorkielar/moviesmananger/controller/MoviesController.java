@@ -39,9 +39,9 @@ public class MoviesController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteMovie(@PathVariable String id) throws Exception {
 		if(moviesService.delete(id)) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity(HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 }
